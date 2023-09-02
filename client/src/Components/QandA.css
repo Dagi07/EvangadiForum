@@ -1,0 +1,64 @@
+.qanda {
+    padding-top: 52px;
+}
+
+.qanda-wrapper {
+    max-width: 945px;
+    margin: auto;
+}
+
+.qanda-wrapper .q h3,
+h4 {
+    margin-bottom: 15px;
+}
+
+.q {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #CACACA;
+    margin-bottom: 20px;
+}
+
+.ans {
+    margin-top: 15px;
+    border-top: 1px solid #CACACA;
+}
+
+.ansForm {
+    margin: 55px auto;
+    box-shadow: 2px 2px 10px rgba(151, 151, 151, 0.75);
+    border-radius: 12px;
+    padding: 55px 50px 27px;
+}
+
+.ansForm textarea {
+    width: 100%;
+    padding-top: 10px;
+    margin: 30px 0;
+    border-radius: 10px;
+    border: 1px solid #CACACA;
+}
+
+.ansForm button {
+    height: 40px;
+    width: 200px;
+    background-color: #516cf1;
+    color: #fff;
+    border: 1px solid #516cf1;
+    border-radius: 5px;
+}
+
+.q-title h2 {
+    margin-bottom: 40px;
+}
+
+@media (max-width: 960px) {
+    .qanda-wrapper {
+        max-width: 664px;
+    }
+}
+
+@media (max-width: 720px) {
+    .qanda-wrapper {
+        max-width: 498px;
+    }
+}

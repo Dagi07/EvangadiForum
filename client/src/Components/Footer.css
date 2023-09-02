@@ -1,0 +1,38 @@
+.footer {
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #3A4559;
+    padding: 25px 133px 27px 151px;
+}
+
+.footer .footerLogo {
+    width: 130px;
+    height: 20px;
+}
+
+.socialMedia {
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    margin-top: 3px;
+    width: 96px;
+}
+
+.footer h3 {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.footer p,
+.footer li {
+    color: #7E8A9A;
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 960px) {
+    .footer {
+        padding: 25px 93px 27px 106px;
+    }
+}

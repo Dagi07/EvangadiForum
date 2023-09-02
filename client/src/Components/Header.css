@@ -1,0 +1,53 @@
+header {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 20px;
+    padding-bottom: 22px;
+    height: 90px;
+    align-items: center;
+    border-bottom: 1px solid rgb(214, 205, 205);
+}
+
+.logo {
+    max-width: 210px;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav li {
+    list-style: none;
+    padding: 0 10px;
+}
+
+nav ul li button {
+    height: 40px;
+    width: 200px;
+    background-color: #516cf1;
+    color: #fff;
+    border: 1px solid #516cf1;
+    border-radius: 5px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+@media (max-width: 720px) {
+    header {
+        padding: 0px;
+    }
+
+    .logo {
+        width: 105px;
+    }
+
+    nav ul li button {
+        height: 30px;
+        width: 100px;
+    }
+}

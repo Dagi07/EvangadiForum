@@ -1,0 +1,54 @@
+.ask {
+    padding: 52px;
+
+}
+
+.ask .steps h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.ask .steps li {
+    margin-bottom: 5px;
+}
+
+.steps {
+    width: 425px;
+    margin: 0 auto 115px;
+}
+
+.ask form {
+    max-width: 943px;
+    margin: auto;
+    padding: 78px 50px 50px;
+    box-shadow: 2px 2px 10px rgba(151, 151, 151, 0.75);
+    border-radius: 12px;
+}
+
+.q-title {
+    text-align: center;
+}
+
+.ask form textarea {
+    width: 100%;
+    margin-bottom: 7px;
+    border-radius: 8px;
+    padding: 10px 10px;
+}
+
+.ask form button {
+    height: 40px;
+    width: 200px;
+    background-color: #516cf1;
+    color: #fff;
+    border: 1px solid #516cf1;
+    border-radius: 5px;
+}
+
+.ask form h2 {
+    margin-bottom: 20px;
+}
+
+.ask form p {
+    margin-bottom: 10px;
+}

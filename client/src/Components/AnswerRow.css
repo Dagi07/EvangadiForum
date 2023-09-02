@@ -1,0 +1,14 @@
+.ans_row {
+    display: flex;
+    align-items: center;
+    /* background-color: pink; */
+    padding-bottom: 25px;
+    border-bottom: 1px solid rgb(209, 209, 209);
+}
+
+.eachAns {
+    display: flex;
+    align-items: baseline;
+    width: 100%;
+    height: max-content !important;
+}
