@@ -32,7 +32,7 @@ let question = `CREATE TABLE  if not exists question(
     question_id int auto_increment,
     user_id int not null,
     question varchar(255) not null,
-    question_description varchar(255) not null,
+    question_description VARCHAR(MAX) not null,
     question_code_block varchar(255) not null,
     tags varchar(255),
     
@@ -45,7 +45,7 @@ let question = `CREATE TABLE  if not exists question(
 let answer = `CREATE TABLE  if not exists answer(
     answer_id int auto_increment,
     user_id int not null,
-    answer varchar(255) not null,
+    answer VARCHAR(MAX) not null,
     answer_code_block varchar(255) not null,
     PRIMARY KEY (answer_id),
     FOREIGN KEY (user_id) REFERENCES registration(user_id),
