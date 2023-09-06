@@ -13,4 +13,4 @@ app.use(express.json());
 
 app.use("/api/users", userRouter);
 
-app.listen(port, () => console.log(`Listening at http://localhost:${port}`));
+app.listen(port, () => console.log(`Listening at http://${DB_HOST}:${port}`));
