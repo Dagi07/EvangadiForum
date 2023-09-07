@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import "./QandA.css";
 import AnswerRow from "./AnswerRow";
 import { useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../axios";
 import UserContext from "../context/UserContext";
 
 const QandA = () => {
@@ -17,12 +17,13 @@ const QandA = () => {
   useEffect(() => {
     const fetchQ = async () => {
       try {
-        const singleQuestionRes = await axios.post(
-          `http://localhost:7000/api/users/q-a-detail`,
-          {
+        const singleQuestionRes = await axios({
+          method: post,
+          url: `/users/q-a-detail`,
+          data: {
             ky: location.state.ky,
-          }
-        );
+          },
+        });
         setEveryQuestion(...singleQuestionRes.data.data);
       } catch (err) {
         alert(err);
@@ -32,12 +33,13 @@ const QandA = () => {
     fetchQ();
     const fetchAns = async () => {
       try {
-        const answerRes = await axios.post(
-          "http://localhost:7000/api/users/grab_answers",
-          {
+        const answerRes = await axios({
+          method: "post",
+          url: "/users/grab_answers",
+          data: {
             ky: location.state.ky,
-          }
-        );
+          },
+        });
         setAnswers(answerRes.data.data);
       } catch (err) {
         alert(err);
@@ -54,10 +56,14 @@ const QandA = () => {
     e.preventDefault();
     try {
       // sending user data to database to register
-      await axios.post("http://localhost:7000/api/users/answer", {
-        ky: location.state.ky,
-        ans: form.ans,
-        userId: userData.user.id,
+      await axios.post({
+        method: "post",
+        url: "/users/answer",
+        data: {
+          ky: location.state.ky,
+          ans: form.ans,
+          userId: userData.user.id,
+        },
       });
 
       e.ans = "";

@@ -3,7 +3,7 @@ import "./Home.css";
 import QuestionRow from "./QuestionRow";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../context/UserContext";
-import axios from "axios";
+import axios from "../axios";
 
 const Home = () => {
   const [userData, setUserData] = useContext(UserContext);
@@ -22,9 +22,10 @@ const Home = () => {
   useEffect(() => {
     const fetchQ = async () => {
       try {
-        const questionRes = await axios.get(
-          "http://localhost:7000/api/users/ask"
-        );
+        const questionRes = await axios({
+          method: "get",
+          url: "/users/ask",
+        });
         setEveryQuestion(questionRes.data.data);
       } catch (err) {
         alert(err);

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import "./Landing.css";
 import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../context/UserContext";
-import axios from "axios";
+import axios from "../axios";
 import About from "./About.jsx";
 
 const Landing = () => {
@@ -18,9 +18,13 @@ const Landing = () => {
     e.preventDefault();
     try {
       // sending user data to database to be logged in
-      const loginRes = await axios.post("http://localhost:7000/api/users/", {
-        email: form.email,
-        password: form.password,
+      const loginRes = await axios({
+        method: post,
+        url: "/users/",
+        data: {
+          email: form.email,
+          password: form.password,
+        },
       });
 
       // update global state with response from backend(user-info)
