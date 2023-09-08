@@ -12,13 +12,21 @@ const QandA = () => {
   const [form, setForm] = useState({});
   const navigate = useNavigate();
   const [answers, setAnswers] = useState([]);
+  const [reloadComponent, setReloadComponent] = useState(false);
+
+  useEffect(() => {
+    if (reloadComponent) {
+      // Fetch updated data or perform any necessary actions here
+      setReloadComponent(false);
+    }
+  }, [reloadComponent]);
 
   console.log(answers);
   useEffect(() => {
     const fetchQ = async () => {
       try {
         const singleQuestionRes = await axios({
-          method: post,
+          method: "post",
           url: `/users/q-a-detail`,
           data: {
             ky: location.state.ky,
@@ -53,10 +61,10 @@ const QandA = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
   const handleAnsSubmit = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     try {
       // sending user data to database to register
-      await axios.post({
+      await axios({
         method: "post",
         url: "/users/answer",
         data: {
@@ -66,14 +74,16 @@ const QandA = () => {
         },
       });
 
-      e.ans = "";
+      setReloadComponent(true);
+
+      // e.ans = "";
       // navigate user to home
       // navigate("/q-a-detail");
     } catch (err) {
-      console.log("problem", err.response.data.msg);
-      alert(err.response.data.msg);
+      console.log("problem", err);
+      alert(err);
     }
-    form.ans = "";
+    // form.ans = "";
   };
   // console.log(everyQuestion);
   return (
@@ -87,7 +97,7 @@ const QandA = () => {
         <h2>Answer From The Community</h2>
         <div className="ans">
           {answers.map((eachAns) => (
-            <AnswerRow asker={eachAns.user_name} ans={eachAns.answer} />
+            <AnswerRow asker={eachAns?.user_name} ans={eachAns?.answer} />
           ))}
           <form className="ansForm" onSubmit={handleAnsSubmit}>
             <div className="q-title">

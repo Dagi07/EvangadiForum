@@ -19,7 +19,7 @@ const Landing = () => {
     try {
       // sending user data to database to be logged in
       const loginRes = await axios({
-        method: post,
+        method: "post",
         url: "/users/",
         data: {
           email: form.email,
@@ -80,9 +80,13 @@ const Landing = () => {
             <label htmlFor="password"></label>
           </p>
           <button type="submit">Submit</button>
-          <p>
+          <p className="links">
             <Link className="link" to="/register">
               Create a new account
+            </Link>
+
+            <Link to="/forgetpassword" className="link">
+              Forgot password?
             </Link>
           </p>
         </form>

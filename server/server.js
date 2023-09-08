@@ -7,7 +7,15 @@ const userRouter = require("./api/users/user.router");
 const app = express();
 const port = process.env.PORT;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // Allow requests from any origin
+      callback(null, true);
+    },
+    credentials: true, // Allow credentials (cookies) to be sent
+  })
+);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
