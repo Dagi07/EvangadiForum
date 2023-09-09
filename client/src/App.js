@@ -27,16 +27,20 @@ function App() {
       token = "";
     } else {
       // if token in localStorage then use auth to verify token and get user info
-      const userRes = await axios.get("http://localhost:7000/api/users", {
-        headers: { "x-auth-token": token },
+      const userRes = await axios({
+        method: "get",
+        url: "/users",
+        data: {
+          headers: { "x-auth-token": token },
+        },
       });
 
       // set the global state with user info
       setUserData({
         token,
         user: {
-          id: userRes.data.data.user_id,
-          display_name: userRes.data.data.user_name,
+          id: userRes?.data.data.user_id,
+          display_name: userRes?.data.data.user_name,
         },
       });
     }

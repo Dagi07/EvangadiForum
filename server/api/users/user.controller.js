@@ -14,6 +14,7 @@ const {
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
+const nodemailer = require("nodemailer");
 
 module.exports = {
   createUser: (req, res) => {
@@ -210,7 +211,7 @@ module.exports = {
     console.log(email);
     // check the email is alredy taken
 
-    connection.query(
+    pool.query(
       "SELECT * FROM registration WHERE user_email = ?",
       [email],
       (err, results) => {
@@ -233,7 +234,7 @@ module.exports = {
         //save to database
         const query = `UPDATE registration SET otp = ? WHERE user_email = ?`;
 
-        connection.query(query, [v_code, email], (error) => {
+        pool.query(query, [v_code, email], (error) => {
           if (error) {
             console.log("error", error);
             return res.send(error);
@@ -248,14 +249,14 @@ module.exports = {
   confimCode: (req, res) => {
     const query = `select otp from  registration where user_email=?`;
     const { v_code, email } = req.body;
-    console.log(req.body);
-    connection.query(query, [email], (error, result) => {
+    console.log("body", req.body);
+    pool.query(query, [email], (error, result) => {
       if (error) {
         console.log("error", error);
         return res.send(error);
       }
       var data = result[0].otp;
-      console.log(data);
+      console.log("data", data);
       if (data && v_code == data) {
         res.send({ state: "success", msg: `confimed` });
       } else {

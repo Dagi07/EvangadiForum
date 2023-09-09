@@ -17,13 +17,13 @@ const Code_enter = () => {
       ...form,
       [field]: value,
     });
-
-    if (errors[field]) {
-      setError({
-        ...errors,
-        [field]: null,
-      });
-    }
+    console.log(form, userData);
+    // if (errors[field]) {
+    //   setError({
+    //     ...errors,
+    //     [field]: null,
+    //   });
+    // }
   };
 
   const handleSubmit = async (e) => {
@@ -31,10 +31,11 @@ const Code_enter = () => {
     setMessage("");
     if (1) {
       // if (validateForm()) {
-      form.email = userData.email;
+      form.email = userData.user;
+      console.log("form", form);
       try {
         axios.defaults.withCredentials = true;
-        const response = await axios.post(`/api/users/confimCode`, form);
+        const response = await axios.post(`/users/confimCode`, form);
         const data = response.data;
         // alert(data.msg)
         if (data.state == "success") {
@@ -84,7 +85,7 @@ const Code_enter = () => {
             <br />
             <button className="btn1">submit</button>
           </form>
-          <Link to="/login" className="a3 a1">
+          <Link to="/" className="a3 a1">
             Signin with email and password
           </Link>
         </div>

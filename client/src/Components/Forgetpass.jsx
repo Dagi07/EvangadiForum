@@ -35,15 +35,19 @@ const Forgetpass = () => {
       // if (validateForm()) {
       try {
         axios.defaults.withCredentials = true;
-        const response = await axios.post(`/api/users/forgetpassword`, form);
+        const response = await axios({
+          method: "post",
+          url: "/users/forgetpassword",
+          data: form,
+        });
+        // await axios.post(`/users/forgetpassword`, form);
         const data = response.data;
         // alert(data.msg)
         if (data.state == "success") {
           setUserData({
             type: "SET_EMAIL",
-            userData: {
-              email: form.email,
-            },
+
+            user: form.email,
           });
 
           navigate("/code");
@@ -60,7 +64,7 @@ const Forgetpass = () => {
       }
     }
   };
-
+  console.log(userData);
   return (
     <div className="container-fluid login_page">
       <div className="container py-5 d-md-flex justify-content-between login_container">
