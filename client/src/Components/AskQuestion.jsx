@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import "./AskQuestion.css";
 import UserContext from "../context/UserContext";
-import axios from "../axios";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const AskQuestion = () => {
@@ -18,14 +18,10 @@ const AskQuestion = () => {
     e.preventDefault();
     try {
       // sending user data to database to register
-      await axios({
-        method: "post",
-        url: "/users/ask",
-        data: {
-          userId: userData.user.id,
-          title: form.title,
-          qdesc: form.qdesc,
-        },
+      await axios.post("http://localhost:7000/api/users/ask", {
+        userId: userData.user.id,
+        title: form.title,
+        qdesc: form.qdesc,
       });
 
       // navigate user to home

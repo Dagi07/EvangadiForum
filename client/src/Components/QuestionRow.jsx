@@ -5,8 +5,8 @@ import ChevronRightSharpIcon from "@mui/icons-material/ChevronRightSharp";
 import { Link } from "react-router-dom";
 import UserContext from "../context/UserContext";
 
-const QuestionRow = ({ aQues, asker, ky }) => {
-  // const [userData, setUserData] = useContext(UserContext);
+const QuestionRow = ({ aQues, asker, ui, ky }) => {
+  const [userData, setUserData] = useContext(UserContext);
   // console.log({ key });
   // let k = { key };
   // console.log(k);
