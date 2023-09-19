@@ -23,7 +23,7 @@ const QandA = () => {
     const fetchQ = async () => {
       try {
         const singleQuestionRes = await axios({
-          method: post,
+          method: 'post',
           url: `/users/q-a-detail`,
           data: {
             ky: kyy,
@@ -62,7 +62,7 @@ const QandA = () => {
     e.preventDefault();
     try {
       // sending user data to database to register
-      await axios.post({
+      await axios({
         method: "post",
         url: "/users/answer",
         data: {
@@ -71,22 +71,18 @@ const QandA = () => {
           userId: userData.user.id,
         },
       });
-<<<<<<< HEAD
       
       // setReloadComponent(true);
 
       // e.ans = "";
-=======
 
       e.ans = "";
->>>>>>> parent of f44fab9 (Finals touches)
       // navigate user to home
       // navigate("/q-a-detail");
     } catch (err) {
       console.log("problem", err.response.data.msg);
       alert(err.response.data.msg);
     }
-<<<<<<< HEAD
     // const handleReset = (e) => {
     //   // document.querySelector('textarea');
     //   setForm({
@@ -96,9 +92,6 @@ const QandA = () => {
     // handleReset()
 
     // form.ans = "";
-=======
-    form.ans = "";
->>>>>>> parent of f44fab9 (Finals touches)
   };
   // console.log(everyQuestion);
   return (

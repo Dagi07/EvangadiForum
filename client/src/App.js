@@ -64,7 +64,6 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-<<<<<<< HEAD
           {/* <Route
             path="/forgetpassword"
             element={
@@ -89,8 +88,6 @@ function App() {
               </>
             }
           /> */}
-=======
->>>>>>> parent of f44fab9 (Finals touches)
           <Route
             path="/home"
             element={
