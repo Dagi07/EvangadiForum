@@ -10,9 +10,6 @@ import QandA from "./Components/QandA";
 import { useContext, useEffect } from "react";
 import UserContext from "./context/UserContext";
 import axios from "axios";
-import Forgetpass from "./Components/Forgetpass";
-import Code_enter from "./Components/Code_enter";
-import NewPass from "./Components/NewPass";
 
 function App() {
   // import the global data from UserContext
@@ -67,6 +64,7 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
+<<<<<<< HEAD
           {/* <Route
             path="/forgetpassword"
             element={
@@ -91,6 +89,8 @@ function App() {
               </>
             }
           /> */}
+=======
+>>>>>>> parent of f44fab9 (Finals touches)
           <Route
             path="/home"
             element={

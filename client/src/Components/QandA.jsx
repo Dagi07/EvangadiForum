@@ -12,14 +12,6 @@ const QandA = () => {
   const [form, setForm] = useState({});
   const navigate = useNavigate();
   const [answers, setAnswers] = useState([]);
-  const [reloadComponent, setReloadComponent] = useState(false);
-
-  useEffect(() => {
-    if (reloadComponent) {
-      // Fetch updated data or perform any necessary actions here
-      setReloadComponent(false);
-    }
-  }, [reloadComponent]);
 
   // useEffect(() => {
     localStorage.setItem('ky', JSON.stringify(location.state.ky));
@@ -31,7 +23,7 @@ const QandA = () => {
     const fetchQ = async () => {
       try {
         const singleQuestionRes = await axios({
-          method: "post",
+          method: post,
           url: `/users/q-a-detail`,
           data: {
             ky: kyy,
@@ -67,10 +59,10 @@ const QandA = () => {
   };
   
   const handleAnsSubmit = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     try {
       // sending user data to database to register
-      await axios({
+      await axios.post({
         method: "post",
         url: "/users/answer",
         data: {
@@ -79,16 +71,22 @@ const QandA = () => {
           userId: userData.user.id,
         },
       });
+<<<<<<< HEAD
       
       // setReloadComponent(true);
 
       // e.ans = "";
+=======
+
+      e.ans = "";
+>>>>>>> parent of f44fab9 (Finals touches)
       // navigate user to home
       // navigate("/q-a-detail");
     } catch (err) {
-      console.log("problem", err);
-      alert(err);
+      console.log("problem", err.response.data.msg);
+      alert(err.response.data.msg);
     }
+<<<<<<< HEAD
     // const handleReset = (e) => {
     //   // document.querySelector('textarea');
     //   setForm({
@@ -98,6 +96,9 @@ const QandA = () => {
     // handleReset()
 
     // form.ans = "";
+=======
+    form.ans = "";
+>>>>>>> parent of f44fab9 (Finals touches)
   };
   // console.log(everyQuestion);
   return (
@@ -111,7 +112,7 @@ const QandA = () => {
         <h2>Answer From The Community</h2>
         <div className="ans">
           {answers.map((eachAns) => (
-            <AnswerRow asker={eachAns?.user_name} ans={eachAns?.answer} />
+            <AnswerRow asker={eachAns.user_name} ans={eachAns.answer} />
           ))}
           <form className="ansForm" onSubmit={handleAnsSubmit}>
             <div className="q-title">

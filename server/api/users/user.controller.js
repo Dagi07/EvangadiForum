@@ -205,6 +205,7 @@ module.exports = {
       });
     });
   },
+<<<<<<< HEAD
 
   forgetPassword: (req, res) => {
     const { email } = req.body;
@@ -390,4 +391,6 @@ const sendEmail = async (user_email, v_code) => {
     console.error("Error sending email:", error);
     throw error;
   }
+=======
+>>>>>>> parent of f44fab9 (Finals touches)
 };

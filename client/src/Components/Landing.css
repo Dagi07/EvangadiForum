@@ -53,11 +53,6 @@
     color: #ffae00;
 }
 
-.links {
-    display: flex;
-    justify-content: space-evenly;
-}
-
 @media (max-width: 960px) {
     .landing form {
         min-width: 296px !important;

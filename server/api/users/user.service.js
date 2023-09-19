@@ -122,20 +122,5 @@ module.exports = {
       }
     );
   },
-  changepass: (data, callback) => {
-    console.log(data.new_password);
-
-    connection.query(
-      `UPDATE registration SET user_password = ? WHERE user_email = ?`,
-      [data.new_password, data.email],
-      (err, result) => {
-        if (err) {
-          return callback(err);
-        }
-        return callback(null, result);
-      }
-    );
-    //query select user using email to get user_id
-  },
 };
 // ON answer.user_id = registration.user_id
