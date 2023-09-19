@@ -10,6 +10,9 @@ import QandA from "./Components/QandA";
 import { useContext, useEffect } from "react";
 import UserContext from "./context/UserContext";
 import axios from "axios";
+import Forgetpass from "./Components/Forgetpass";
+import Code_enter from "./Components/Code_enter";
+import NewPass from "./Components/NewPass";
 
 function App() {
   // import the global data from UserContext
@@ -24,16 +27,20 @@ function App() {
       token = "";
     } else {
       // if token in localStorage then use auth to verify token and get user info
-      const userRes = await axios.get("http://localhost:7000/api/users", {
-        headers: { "x-auth-token": token },
+      const userRes = await axios({
+        method: "get",
+        url: "/users",
+        data: {
+          headers: { "x-auth-token": token },
+        },
       });
 
       // set the global state with user info
       setUserData({
         token,
         user: {
-          id: userRes.data.data.user_id,
-          display_name: userRes.data.data.user_name,
+          id: userRes?.data.data.user_id,
+          display_name: userRes?.data.data.user_name,
         },
       });
     }
@@ -60,6 +67,30 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
+          <Route
+            path="/forgetpassword"
+            element={
+              <>
+                <Forgetpass />
+              </>
+            }
+          />
+          <Route
+            path="/code"
+            element={
+              <>
+                <Code_enter />
+              </>
+            }
+          />
+          <Route
+            path="/newPassword"
+            element={
+              <>
+                <NewPass />
+              </>
+            }
+          />
           <Route
             path="/home"
             element={

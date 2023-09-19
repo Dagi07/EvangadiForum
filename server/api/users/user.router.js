@@ -10,6 +10,9 @@ const {
   singleQuestion,
   postAnswer,
   grabAnswers,
+  forgetPassword,
+  confimCode,
+  changePassword,
 } = require("./user.controller");
 
 router.post("/register", createUser);
@@ -21,5 +24,8 @@ router.get("/ask", questionById);
 router.post("/q-a-detail", singleQuestion);
 router.post("/answer", postAnswer);
 router.post("/grab_answers", grabAnswers);
+router.post("/forgetpassword", forgetPassword);
+router.post("/confimCode", confimCode);
+router.post("/changePassword", changePassword);
 
 module.exports = router;

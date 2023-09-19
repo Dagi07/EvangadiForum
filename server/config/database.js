@@ -18,7 +18,10 @@ let registration = `CREATE TABLE  if not exists registration(
     user_name varchar(255) not null,
     user_email varchar(255) not null,
     user_password varchar(255) not null,
-    PRIMARY KEY (user_id)
+    otp varchar (8),
+    PRIMARY KEY (user_id),
+    UNIQUE KEY (user_name),
+    UNIQUE KEY (user_email)
 )`;
 let profile = `CREATE TABLE  if not exists profile(
     user_profile_id int auto_increment,

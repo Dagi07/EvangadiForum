@@ -80,9 +80,13 @@ const Landing = () => {
             <label htmlFor="password"></label>
           </p>
           <button type="submit">Submit</button>
-          <p>
+          <p className="links">
             <Link className="link" to="/register">
               Create a new account
+            </Link>
+
+            <Link to="/forgetpassword" className="link">
+              Forgot password?
             </Link>
           </p>
         </form>
