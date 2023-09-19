@@ -19,7 +19,7 @@ const Landing = () => {
     try {
       // sending user data to database to be logged in
       const loginRes = await axios({
-        method: post,
+        method: "post",
         url: "/users/",
         data: {
           email: form.email,

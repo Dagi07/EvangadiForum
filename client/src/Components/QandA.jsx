@@ -13,15 +13,20 @@ const QandA = () => {
   const navigate = useNavigate();
   const [answers, setAnswers] = useState([]);
 
+  // useEffect(() => {
+    localStorage.setItem('ky', JSON.stringify(location.state.ky));
+  // }, [handleAnsSubmit()]);
+  let kyy = localStorage.getItem("ky");
+
   console.log(answers);
   useEffect(() => {
     const fetchQ = async () => {
       try {
         const singleQuestionRes = await axios({
-          method: post,
+          method: "post",
           url: `/users/q-a-detail`,
           data: {
-            ky: location.state.ky,
+            ky: kyy,
           },
         });
         setEveryQuestion(...singleQuestionRes.data.data);
@@ -37,7 +42,7 @@ const QandA = () => {
           method: "post",
           url: "/users/grab_answers",
           data: {
-            ky: location.state.ky,
+            ky: kyy,
           },
         });
         setAnswers(answerRes.data.data);
@@ -52,28 +57,35 @@ const QandA = () => {
   const handleAnsChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
+  
   const handleAnsSubmit = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     try {
       // sending user data to database to register
-      await axios.post({
+      await axios({
         method: "post",
         url: "/users/answer",
         data: {
-          ky: location.state.ky,
+          ky: kyy,
           ans: form.ans,
           userId: userData.user.id,
         },
       });
 
-      e.ans = "";
+      
       // navigate user to home
       // navigate("/q-a-detail");
     } catch (err) {
       console.log("problem", err.response.data.msg);
       alert(err.response.data.msg);
     }
-    form.ans = "";
+    // const handleReset = (e) => {
+    //   // document.querySelector('textarea');
+    //   setForm({
+    //     [e.value]: ""
+    //   });
+    // };
+    // handleReset()
   };
   // console.log(everyQuestion);
   return (
