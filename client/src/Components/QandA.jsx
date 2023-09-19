@@ -79,21 +79,16 @@ const QandA = () => {
           userId: userData.user.id,
         },
       });
-
-<<<<<<< HEAD
       
-=======
-      setReloadComponent(true);
+      // setReloadComponent(true);
 
       // e.ans = "";
->>>>>>> 71fe37e44c11348eb4774ccfa212fc569209adcc
       // navigate user to home
       // navigate("/q-a-detail");
     } catch (err) {
       console.log("problem", err);
       alert(err);
     }
-<<<<<<< HEAD
     // const handleReset = (e) => {
     //   // document.querySelector('textarea');
     //   setForm({
@@ -101,9 +96,8 @@ const QandA = () => {
     //   });
     // };
     // handleReset()
-=======
+
     // form.ans = "";
->>>>>>> 71fe37e44c11348eb4774ccfa212fc569209adcc
   };
   // console.log(everyQuestion);
   return (

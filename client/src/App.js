@@ -67,30 +67,30 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route
+          {/* <Route
             path="/forgetpassword"
             element={
               <>
                 <Forgetpass />
               </>
             }
-          />
-          <Route
+          /> */}
+          {/* <Route
             path="/code"
             element={
               <>
                 <Code_enter />
               </>
             }
-          />
-          <Route
+          /> */}
+          {/* <Route
             path="/newPassword"
             element={
               <>
                 <NewPass />
               </>
             }
-          />
+          /> */}
           <Route
             path="/home"
             element={
