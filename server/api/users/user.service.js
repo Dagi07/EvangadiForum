@@ -122,5 +122,18 @@ module.exports = {
       }
     );
   },
+  getAllAnswers: (callback) => {
+    pool.query(
+      `SELECT * FROM answer LEFT JOIN registration ON answer.user_id = registration.user_id`,
+      // "SELECT question_id, question.user_id, question,question_description r"
+      [],
+      (err, result) => {
+        if (err) {
+          return callback(err);
+        }
+        return callback(null, result);
+      }
+    );
+  },
 };
 // ON answer.user_id = registration.user_id

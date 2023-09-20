@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./QandA.css";
 import AnswerRow from "./AnswerRow";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import UserContext from "../context/UserContext";
 
@@ -12,45 +12,82 @@ const QandA = () => {
   const [form, setForm] = useState({});
   const navigate = useNavigate();
   const [answers, setAnswers] = useState([]);
+  const {singq} = useParams()
 
+  // // useEffect(() => {
+  //   localStorage.setItem('ky', JSON.stringify(location.state.ky));
+  // // }, [handleAnsSubmit()]);
+  // let kyy = localStorage.getItem("ky");
+
+  // console.log(answers);
   // useEffect(() => {
-    localStorage.setItem('ky', JSON.stringify(location.state.ky));
-  // }, [handleAnsSubmit()]);
-  let kyy = localStorage.getItem("ky");
+  //   const fetchQ = async () => {
+  //     try {
+  //       const singleQuestionRes = await axios.post(
+  //         `http://localhost:7000/api/users/q-a-detail`,
+  //         {
+  //           // ky: location.state.ky,
+  //           ky: singq,
+  //         }
+  //       );
+  //       setEveryQuestion(...singleQuestionRes.data.data);
+  //     } catch (err) {
+  //       alert(err);
+  //       console.log("problem", err);
+  //     }
+  //   };
+  //   fetchQ();
+  //   const fetchAns = async () => {
+  //     try {
+  //       const answerRes = await axios.post(
+  //         "http://localhost:7000/api/users/grab_answers",
+  //         {
+  //           // ky: location.state.ky,
+  //           ky: singq,
+  //         }
+  //       );
+  //       setAnswers(answerRes.data.data);
+  //     } catch (err) {
+  //       alert(err);
+  //       console.log("problem", err);
+  //     }
+  //   };
+  //   fetchAns();
+  // }, []);
 
-  console.log(answers);
-  useEffect(() => {
-    const fetchQ = async () => {
+
+  useEffect(()=>{
+    const getQ = async() => {
       try {
-        const singleQuestionRes = await axios.post(
-          `http://localhost:7000/api/users/q-a-detail`,
-          {
-            ky: location.state.ky,
-          }
-        );
-        setEveryQuestion(...singleQuestionRes.data.data);
+        const questions = await axios.get(`http://localhost:7000/api/users/ask`)
+        
+        // setEveryQuestion(questions.data.data)
+        let thisQuestion = questions.data.data.filter(tq=> tq.question_id == singq)
+        setEveryQuestion(thisQuestion[0])
+        // console.log(thisQuestion[0])
       } catch (err) {
-        alert(err);
-        console.log("problem", err);
-      }
-    };
-    fetchQ();
-    const fetchAns = async () => {
+              alert(err);
+              console.log("problem", err);
+            }
+    }
+    getQ()
+
+    const getA = async() => {
       try {
-        const answerRes = await axios.post(
-          "http://localhost:7000/api/users/grab_answers",
-          {
-            ky: location.state.ky,
-          }
-        );
-        setAnswers(answerRes.data.data);
+        const getAllAnss = await axios.get(`http://localhost:7000/api/users/getallans`)
+        
+        let thisAnswer = getAllAnss.data.data.filter(ta=> ta.question_id == singq)
+        setAnswers(thisAnswer)
+        console.log(thisAnswer)
       } catch (err) {
-        alert(err);
-        console.log("problem", err);
-      }
-    };
-    fetchAns();
-  }, []);
+              alert(err);
+              console.log("problem", err);
+            }
+    }
+    getA()
+  },[])
+
+  // console.log(everyQuestion)
 
   const handleAnsChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -61,22 +98,24 @@ const QandA = () => {
     try {
       // sending user data to database to register
       await axios.post("http://localhost:7000/api/users/answer", {
-        ky: location.state.ky,
+        // ky: location.state.ky,
+        ky: singq,
         ans: form.ans,
         userId: userData.user.id,
       });
-      
+      setAnswers(...answers)
       // setReloadComponent(true);
 
       // e.ans = "";
 
-      e.ans = "";
-      // navigate user to home
-      // navigate("/q-a-detail");
+      // e.ans = "";
+      // reload page
+      // navigate("/q-a-detail/"+singq);
     } catch (err) {
       console.log("problem", err.response.data.msg);
       alert(err.response.data.msg);
     }
+    setAnswers([...answers])
     // const handleReset = (e) => {
     //   // document.querySelector('textarea');
     //   setForm({

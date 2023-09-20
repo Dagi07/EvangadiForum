@@ -10,6 +10,7 @@ const {
   singleQuestion,
   postAnswer,
   grabAnswers,
+  getAllAns,
 } = require("./user.controller");
 
 router.post("/register", createUser);
@@ -21,5 +22,6 @@ router.get("/ask", questionById);
 router.post("/q-a-detail", singleQuestion);
 router.post("/answer", postAnswer);
 router.post("/grab_answers", grabAnswers);
+router.get("/getallans", getAllAns);
 
 module.exports = router;

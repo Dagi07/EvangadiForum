@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Home.css";
 import QuestionRow from "./QuestionRow";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../context/UserContext";
 import axios from "axios";
 
@@ -48,12 +48,16 @@ const Home = () => {
         </div>
         <h3>Questions</h3>
         {everyQuestion.toReversed().map((eachQuestion) => (
+          // {{id=eachQuestion.question_id}}
+          // <Link to={"/q-a-detail/"+eachQuestion.question_id}>
           <QuestionRow
-            ky={eachQuestion.question_id}
+            // ky={eachQuestion.question_id}
+            qid={eachQuestion.question_id}
             aQues={eachQuestion.question}
             ui={eachQuestion.user_id}
             asker={eachQuestion.user_name}
           />
+          // </Link>
         ))}
       </div>
     </div>

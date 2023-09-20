@@ -119,7 +119,7 @@ function App() {
             }
           />
           <Route
-            path="/q-a-detail"
+            path="/q-a-detail/:singq"
             element={
               <>
                 <Header logout={logout} />
