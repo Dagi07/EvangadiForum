@@ -55,6 +55,8 @@ const QandA = () => {
   //   fetchAns();
   // }, []);
 
+  const updatedAns = {}
+
 
   useEffect(()=>{
     const getQ = async() => {
@@ -76,9 +78,9 @@ const QandA = () => {
       try {
         const getAllAnss = await axios.get(`http://localhost:7000/api/users/getallans`)
         
-        let thisAnswer = getAllAnss.data.data.filter(ta=> ta.question_id == singq)
-        setAnswers(thisAnswer)
-        console.log(thisAnswer)
+        updatedAns.thisAnswer = getAllAnss.data.data.filter(ta=> ta.question_id == singq)
+        setAnswers(updatedAns.thisAnswer)
+        // console.log(thisAnswer)
       } catch (err) {
               alert(err);
               console.log("problem", err);
@@ -97,13 +99,14 @@ const QandA = () => {
     e.preventDefault();
     try {
       // sending user data to database to register
-      await axios.post("http://localhost:7000/api/users/answer", {
+      const fetchedAns = await axios.post("http://localhost:7000/api/users/answer", {
         // ky: location.state.ky,
         ky: singq,
         ans: form.ans,
         userId: userData.user.id,
       });
-      setAnswers(...answers)
+      
+      setAnswers([...answers, updatedAns.thisAnswer])
       // setReloadComponent(true);
 
       // e.ans = "";
@@ -115,7 +118,7 @@ const QandA = () => {
       console.log("problem", err.response.data.msg);
       alert(err.response.data.msg);
     }
-    setAnswers([...answers])
+    // setAnswers([...answers])
     // const handleReset = (e) => {
     //   // document.querySelector('textarea');
     //   setForm({
@@ -126,7 +129,7 @@ const QandA = () => {
 
     // form.ans = "";
   };
-  // console.log(everyQuestion);
+  console.log(answers);
   return (
     <div className="qanda">
       <div className="qanda-wrapper">
@@ -137,9 +140,13 @@ const QandA = () => {
         </div>
         <h2>Answer From The Community</h2>
         <div className="ans">
-          {answers.map((eachAns) => (
-            <AnswerRow asker={eachAns.user_name} ans={eachAns.answer} />
-          ))}
+          {answers?.map((eachAns) =>
+          (
+            <AnswerRow asker={eachAns?.user_name} ans={eachAns?.answer} />
+          )
+          // console.log(eachAns)
+        
+          )}
           <form className="ansForm" onSubmit={handleAnsSubmit}>
             <div className="q-title">
               <h2>Answer The Top Question</h2>
